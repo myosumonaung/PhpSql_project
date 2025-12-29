@@ -1,4 +1,4 @@
-<?php include("./config.php"); ?>
+<?php include("../config.php"); ?>
 
 <!doctype html>
 <html lang="en">
@@ -19,13 +19,11 @@
 </head>
 
 <body>
-    <!-- Start Coding Here -->
-
     <!-- Nav Bar Section -->
     <nav class="navbar navbar-expand-lg bg-transparent shadow-sm">
         <div class="container-fluid">
             <a class="navbar-brand rounded-3" href="#">
-                <img src="images/logo.png" height="56px">
+                <img src="../images/logo.png" height="56px">
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
@@ -35,38 +33,27 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                     <li class="nav-item mx-3 fw-normal fs-5">
-                        <a class="nav-link " aria-current="page" href="index.html">Home</a>
+                        <a class="nav-link " aria-current="page" href="index.php">Home</a>
                     </li>
                     <li class="nav-item mx-3 fw-normal fs-5">
-                        <a class="nav-link" href="category.html">Category</a>
+                        <a class="nav-link" href="manage_admin.php">Admin</a>
                     </li>
                     <li class="nav-item mx-3 fw-normal fs-5">
-                        <a class="nav-link" href="product.html">Product</a>
+                        <a class="nav-link" href="manage_category.php">Category</a>
                     </li>
                     <li class="nav-item mx-3 fw-normal fs-5">
-                        <a class="nav-link" href="contact.html">Contact</a>
+                        <a class="nav-link" href="manage_product.php">Product</a>
+                    </li>
+                    <li class="nav-item mx-3 fw-normal fs-5">
+                        <a class="nav-link" href="manage_order.php">Order</a>
+                    </li>
+                    <li class="nav-item mx-3 fw-normal fs-5">
+                        <a class="nav-link" href="logout.php">Logout</a>
                     </li>
 
                 </ul>
-                <div class="d-none d-lg-block mx-3">
-                    <form class="d-flex" role="search" method="GET" action="search_product.php">
-                        <input class="form-control me-2 text-muted search" type="search"
-                            placeholder="Search Something ..." aria-label="Search">
-                        <button class="btn btn-outline-primary search-btn" type="submit">Search</button>
-                    </form>
-                </div>
 
             </div>
         </div>
     </nav>
     <!-- Nav Bar Section -->
-
-    <!-- Mobile View Search Bar -->
-    <div class="container-fluid product-search d-md-none d-sm-block">
-        <form class="d-flex w-60 p-3 mx-auto" role="search">
-            <input class="form-control me-2 text-muted search" type="search" placeholder="Search Something ..."
-                aria-label="Search">
-            <button class="btn btn-outline-light search-btn" type="submit">Search</button>
-        </form>
-    </div>
-    <!-- Mobile View Search Bar -->
