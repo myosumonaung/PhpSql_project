@@ -4,7 +4,12 @@
     <!-- Dashboard -->
     <div class="container">
         <div class="row pt-4 pb-4 text-color gt-3">
-
+            <?php 
+                if (isset($_SESSION['noti'])) {
+                    echo $_SESSION['noti'];
+                    unset($_SESSION['noti']);
+                }
+            ?>
 
             <h2 class="mt-4 mb-5">Dashboard</h2>
 

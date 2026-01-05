@@ -1,4 +1,13 @@
 <?php include("../config.php"); ?>
+<!-- Check whether the user is logged in or out  -->
+ <?php 
+    if (!isset($_SESSION['user'])) {
+        $_SESSION['noti'] = '<div class="alert alert-danger" role="alert">
+                                You have to login to access the dashboard!
+                            </div>';
+        header('location:'.SITEURL.'admin/login.php');
+    }
+ ?>
 
 <!doctype html>
 <html lang="en">
