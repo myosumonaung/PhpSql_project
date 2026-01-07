@@ -12,7 +12,7 @@
             All right reserved. Designed By
             <br>
             <a href="#" class="text-white text-decoration-none">
-                Let's Learn Programming
+                MSMA
             </a>
         </p>
     </div>

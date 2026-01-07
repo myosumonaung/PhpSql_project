@@ -4,7 +4,7 @@
             All right reserved. Designed By
 
             <a href="#" class="text-decoration-none text-color">
-                Let's Learn Programming
+                MSMA
             </a>
         </p>
     </div>

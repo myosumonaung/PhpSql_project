@@ -1,6 +1,12 @@
  <?php include("widget/header.php"); ?>
  <!-- Promotion Section -->
     <div class="container p-3">
+        <?php 
+            if (isset($_SESSION['noti'])) {
+                echo $_SESSION['noti'];
+                unset($_SESSION['noti']);
+            }
+        ?>
         <br><br>
         <h2 class="text-white text-center">Promotions</h2>
         <br><br>
@@ -62,46 +68,40 @@
     <!-- Category Section -->
     <div class="container p-3 text-center">
         <br><br>
-        <h2 class="text-white">Explore Product</h2>
+        <h2 class="text-white">Explore Book</h2>
         <br><br>
 
         <div class="row">
-            <div class="col-md-4 p-2">
-                <a href="category-product.html" class="text-decoration-none text-dark">
-                    <div class="pb-3 border-0 rounded-4 bg-body shadow p-3">
-                        <img src="images/lipstick.svg" class="rounded-3 w-100" alt="...">
-                        <div class="card-body py-3">
-                            <h5 class="card-title">
-                                Lipstick
-                            </h5>
-                        </div>
-                    </div>
-                </a>
-            </div>
-            <div class="col-md-4 p-2">
-                <a href="category-product.html" class="text-decoration-none text-dark">
-                    <div class="pb-3 border-0 rounded-4 bg-body shadow p-3">
-                        <img src="images/facewash.svg" class="rounded-3 w-100" alt="...">
-                        <div class="card-body py-3">
-                            <h5 class="card-title">
-                                Facewash
-                            </h5>
-                        </div>
-                    </div>
-                </a>
-            </div>
-            <div class="col-md-4 p-2">
-                <a href="category-product.html" class="text-decoration-none text-dark">
-                    <div class="pb-3 border-0 rounded-4 bg-body shadow p-3">
-                        <img src="images/shamboo.svg" class="rounded-3 w-100" alt="...">
-                        <div class="card-body py-3">
-                            <h5 class="card-title">
-                                Shamboo
-                            </h5>
-                        </div>
-                    </div>
-                </a>
-            </div>
+            <!-- Get data from DB  -->
+             <?php 
+                $sql = "SELECT * FROM categories WHERE featured = 'YES' AND active = 'YES' LIMIT 3";
+                $result = mysqli_query($conn,$sql);
+
+                if ($result) {
+                    while ($row = mysqli_fetch_assoc($result)) {
+                        $id = $row['id'];
+                        $title = $row['title'];
+                        $image_name = $row['image_name'];
+                        ?>
+                            <div class="col-md-4 p-2">
+                                <a href="category_product.php?id=<?= $id ?>&title=<?= $title ?>" class="text-decoration-none text-dark">
+                                    <div class="pb-3 border-0 rounded-4 bg-body shadow p-3">
+                                        <img src="images/categories/<?= $image_name ?>" class="rounded-3 w-100" alt="...">
+                                        <div class="card-body py-3">
+                                            <h5 class="card-title">
+                                                <?= $title ?>
+                                            </h5>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                        <?php
+
+                    }
+                }
+             ?>
+
+
         </div>
     </div>
     <!-- Category Section -->
@@ -113,36 +113,41 @@
         <br><br>
 
         <div class="row">
-            <div class="col-md-6 p-2">
-                <div class="p-3 border-0 rounded-4 bg-body shadow w-100">
-                    <div class="d-flex">
-                        <img src="images/shamboo.svg" class="rounded-4 mt-3" width="20%" height="50%">
-                        <div class="p-3">
-                            <h4>Shamboo</h4>
-                            <p> $2.3 </p>
-                            <p class="text-muted">
-                                Some product description
-                            </p>
-                            <a href="order.html" class="btn btn-primary w-40 text-decoration-none">Order Now</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6 p-2">
-                <div class="p-3 border-0 rounded-4 bg-body shadow w-100">
-                    <div class="d-flex">
-                        <img src="images/lipstick.svg" class="rounded-4 mt-3" width="20%" height="50%">
-                        <div class="p-3">
-                            <h4>Lipstick</h4>
-                            <p> $2.3 </p>
-                            <p class="text-muted">
-                                Some product description
-                            </p>
-                            <a href="order.html" class="btn btn-primary w-40 text-decoration-none">Order Now</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
+
+            <!-- Get data from DB  -->
+             <?php 
+                $sql = "SELECT * FROM products WHERE featured = 'YES' AND active = 'YES' LIMIT 2";
+                $result = mysqli_query($conn,$sql);
+
+                if ($result) {
+                    while ($row = mysqli_fetch_assoc($result)) {
+                        $id = $row['id'];
+                        $title = $row['title'];
+                        $price = $row['price'];
+                        $description = $row['description'];
+                        $image_name = $row['image_name'];
+                        ?>
+                            <div class="col-md-6 p-2">
+                                <div class="p-3 border-0 rounded-4 bg-body shadow w-100">
+                                    <div class="d-flex">
+                                        <img src="images/products/<?= $image_name ?>" class="rounded-4 mt-3" width="20%" height="50%">
+                                        <div class="p-3">
+                                            <h4><?= $title ?></h4>
+                                            <p> $<?= $price ?></p>
+                                            <p class="text-muted">
+                                                <?= $description ?>
+                                            </p>
+                                            <a href="order.php?id=<?= $id ?>" class="btn btn-primary w-40 text-decoration-none">Order Now</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        <?php
+                    }
+                }
+             ?>
+
+
         </div>
     </div>
     <!-- Top Products Section -->

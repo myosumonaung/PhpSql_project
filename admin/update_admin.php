@@ -83,8 +83,6 @@
                                 </div>';
             header('location:'.SITEURL.'admin/manage_admin.php');
         }
-    }else{
-
     }
 
 ?>

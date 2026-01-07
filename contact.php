@@ -28,10 +28,7 @@
             </div>
             <div class="col-md-6 p-3">
                 <div class="card rounded-3 shadow">
-                    <iframe class="p-1 rounded-3 w-100"
-                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3675.258222102658!2d96.4177378143114!3d22.903844626503936!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x37336156c3b2030f%3A0x935b34504e0ca266!2sLet&#39;s%20Learn%20Programming!5e0!3m2!1sen!2smm!4v1660477880228!5m2!1sen!2smm"
-                        width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
-                        referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3350.536349807492!2d130.98842147442434!3d32.88398477851388!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3540de5afd1d53dd%3A0x9628f643b657e61b!2s4937-1%20Kaway%C5%8D%2C%20Minamiaso%2C%20Aso%20District%2C%20Kumamoto%20869-1404!5e0!3m2!1sen!2sjp!4v1767680512644!5m2!1sen!2sjp" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                 </div>
             </div>
         </div>

@@ -3,9 +3,7 @@
 <?php 
 
     $id = $_GET['id'];
-
     $sql = "SELECT * FROM categories WHERE id=$id";
-
     $result = mysqli_query($conn,$sql);
 
     if($result){
@@ -124,7 +122,7 @@
                 $_SESSION['noti'] = '<div class="alert alert-danger" role="alert">
                                     Failed To Upload New Image
                                 </div>';
-                header('location:'.SITEURL.'admin/update-category.php');
+                header('location:'.SITEURL.'admin/update_category.php');
                 die();
             }else{
                 if($current_image != null){
@@ -134,7 +132,7 @@
                         $_SESSION['noti'] = '<div class="alert alert-danger" role="alert">
                                     Failed To Remove Current Image
                                 </div>';
-                        header('location:'.SITEURL.'admin/manage-category.php');
+                        header('location:'.SITEURL.'admin/manage_category.php');
                         die();
                     }
                 }
@@ -151,9 +149,9 @@
             WHERE id = $id
         ";
 
-        $result = mysqli_query($conn,$sql);
+        $res = mysqli_query($conn,$sql);
 
-        if($result){
+        if($res){
             $_SESSION['noti'] = '<div class="alert alert-success" role="alert">
                                         Category Updated Successfully
                                     </div>';

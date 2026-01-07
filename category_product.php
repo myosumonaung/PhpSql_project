@@ -1,28 +1,23 @@
  <?php include("widget/header.php"); ?>
-<?php 
-    $query = htmlspecialchars($_GET['query']);
-?>
-
+ <?php 
+    $cid = $_GET['id'];
+    $title = $_GET['title'];
+ ?>
 
     <!-- Product Section -->
     <div class="container p-3">
         <br>
-        <h2 class="text-center text-white d-none d-lg-block">Books Like "<?= $query ?>"</h2>
+        <h2 class="text-center text-white d-none d-lg-block">Products on "<?= $title ?>"</h2>
         <br>
 
         <div class="row">
-        <!-- Get books related with search query  -->
-            <?php 
-                $sql = "SELECT * FROM products WHERE active = 'YES' AND (title LIKE '%$query%' OR description LIKE '%$query%' OR price LIKE '%$query%')";
+
+        <!-- Get data from DB-->
+             <?php 
+                $sql = "SELECT * FROM products WHERE active = 'YES' AND category_id = $cid";
                 $result = mysqli_query($conn,$sql);
 
                 if ($result) {
-                    $count = mysqli_num_rows($result);
-                    if ($count == 0) {
-                        echo '<div class="alert alert-danger text-center" role="alert">
-                                   No data found!
-                                </div>';
-                    }else{
                     while ($row = mysqli_fetch_assoc($result)) {
                         $id = $row['id'];
                         $title = $row['title'];
@@ -47,13 +42,13 @@
                             </div>
                         <?php
                     }
-                    }
-
-
                 }
              ?>
+
+
         </div>
     </div>
     <!-- Product Section -->
 
  <?php include("widget/footer.php"); ?>
+  

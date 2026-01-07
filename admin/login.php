@@ -24,7 +24,7 @@
                 </div>
                 <br><br>
                 <div class="border p-3 rounded-3 ">
-                    <img src="../images/logo.png" width="30%" class="mx-auto d-block mb-3" alt="">
+                    <!-- <img src="../images/logo.png" width="30%" class="mx-auto d-block mb-3" alt=""> -->
                     
                     <form action="" method="post">
                         <div class="mb-3">
@@ -50,7 +50,7 @@
 <?php 
     if ($_SERVER['REQUEST_METHOD'] == "POST") {
         // echo "clicked";
-        $username = $_POST['username'];
+        $username = htmlspecialchars($_POST['username']);
         $password = md5($_POST['password']);
 
         $sql = "SELECT * FROM admin WHERE username = '$username' AND password = '$password'";

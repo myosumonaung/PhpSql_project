@@ -1,62 +1,15 @@
-<!doctype html>
-<html lang="en">
+<?php include("widget/header.php") ?>
+<?php 
+    $id = $_GET['id'];
 
-<head>
-    <link rel="apple-touch-icon" sizes="180x180" href="icon/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="icon/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="icon/favicon-16x16.png">
-    <link rel="manifest" href="icon/site.webmanifest">
+    $sql = "SELECT * FROM products WHERE id = $id";
+    $result = mysqli_query($conn,$sql);
+    $row = mysqli_fetch_assoc($result);
 
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>LLP Online Shop</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
-    <link rel="stylesheet" href="style.css">
-</head>
-
-<body>
-    <!-- Start Coding Here -->
-
-    <!-- Nav Bar Section -->
-    <nav class="navbar navbar-expand-lg bg-transparent shadow-sm">
-        <div class="container-fluid">
-            <a class="navbar-brand rounded-3" href="#">
-                <img src="images/logo.png" height="56px">
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-                aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                    <li class="nav-item mx-3 fw-normal fs-5">
-                        <a class="nav-link " aria-current="page" href="index.html">Home</a>
-                    </li>
-                    <li class="nav-item mx-3 fw-normal fs-5">
-                        <a class="nav-link" href="category.html">Category</a>
-                    </li>
-                    <li class="nav-item mx-3 fw-normal fs-5">
-                        <a class="nav-link" href="product.html">Product</a>
-                    </li>
-                    <li class="nav-item mx-3 fw-normal fs-5">
-                        <a class="nav-link" href="contact.html">Contact</a>
-                    </li>
-
-                </ul>
-                <div class="d-none d-lg-block mx-3">
-                    <form class="d-flex" role="search">
-                        <input class="form-control me-2 text-muted search" type="search"
-                            placeholder="Search Something ..." aria-label="Search">
-                        <button class="btn btn-outline-primary search-btn" type="submit">Search</button>
-                    </form>
-                </div>
-
-            </div>
-        </div>
-    </nav>
-    <!-- Nav Bar Section -->
+    $image_name = $row['image_name'];
+    $title = $row['title'];
+    $price = $row['price'];
+?>
 
     <!-- Order Form Section -->
     <div class="container">
@@ -67,18 +20,18 @@
                     Fill this form for to confirm your order
                 </h2>
                 <br>
-                <form action="" class="row g-3">
+                <form action="" class="row g-3" method="POST">
                     <fieldset class="border p-3 rounded-3 border-2">
                         <legend class="float-none w-auto p-2 text-white">Select Product</legend>
 
                         <div class="d-flex">
-                            <img src="images/lipstick.svg" alt="Lip stick" class="w-25 h-25 rounded-3">
+                            <img src="images/products/<?= $image_name ?>" alt="Lip stick" class="w-25 h-25 rounded-3">
                             <div class="px-3">
-                                <h3>Lipstick</h3>
-                                <p>$ 2.5</p>
+                                <h3><?= $title ?></h3>
+                                <p>$ <?= $price ?></p>
 
                                 <label for="inputNumber" class="form-label">Items</label>
-                                <input type="number" class="form-control w-25" min="1" value="1" id="inputNumber">
+                                <input type="number" class="form-control w-25" min="1" value="1" id="inputNumber" name="qty">
                             </div>
                         </div>
 
@@ -90,27 +43,31 @@
                             Delivery Details
                         </legend>
 
-                        <div class="col-md-12 ">
+                        <div class="col-md-12 mb-2">
                             <label for="inputName" class="form-label text-white">Name</label>
-                            <input type="text" class="form-control" id="inputName" placeholder="James">
+                            <input type="text" class="form-control" id="inputName" placeholder="James" name="name">
                         </div>
 
-                        <div class="col-md-12 ">
+                        <div class="col-md-12  mb-2">
                             <label for="inputPhone" class="form-label text-white">Phone</label>
-                            <input type="tel" class="form-control" id="inputPhone" placeholder="097979xxxxxx">
+                            <input type="tel" class="form-control" id="inputPhone" placeholder="097979xxxxxx" name="contact">
                         </div>
 
-                        <div class="col-md-12 ">
+                        <div class="col-md-12  mb-2">
                             <label for="inputEmail" class="form-label text-white">Email</label>
-                            <input type="email" class="form-control" id="inputEmail" placeholder="someone@gmail.com">
+                            <input type="email" class="form-control" id="inputEmail" placeholder="someone@gmail.com" name="mail">
                         </div>
 
-                        <div class="col-md-12 ">
+                        <div class="col-md-12  mb-2">
                             <label for="textarea" class="form-label text-white">Your Address </label>
-                            <textarea class="form-control mt-3" placeholder="Your Address Details" id="textarea"
+                            <textarea class="form-control mt-1  mb-4" placeholder="Your Address Details" id="textarea" name="address"
                                 style="height: 150px;"></textarea>
                         </div>
 
+                        <input type="hidden" name="product" value="<?= $title ?>">
+                        <input type="hidden" name="price" value="<?= $price ?>">
+                        <button type="submit" class="btn btn-primary w-40">Confirm Order</button>
+                        
                     </fieldset>
                 </form>
             </div>
@@ -119,30 +76,47 @@
     <!-- Order Form Section -->
 
 
-    <!-- Footer Section -->
-    <div class="container-fluid text-center p-3">
-        <a href="#">
-            <img src="https://img.icons8.com/fluency/48/000000/facebook-new.png" /> </a>
-        <a href="#">
-            <img src="https://img.icons8.com/fluency/48/000000/instagram-new.png" /> </a>
-        <a href="#">
-            <img src="https://img.icons8.com/cotton/64/000000/twitter.png" />
-        </a>
-        <br><br>
-        <p class="text-white fs-6">
-            All right reserved. Designed By
-            <br>
-            <a href="#" class="text-white text-decoration-none">
-                Let's Learn Programming
-            </a>
-        </p>
-    </div>
-    <!-- Footer Section -->
+<?php include("widget/footer.php") ?>
 
-    <!-- End Coding Here -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
-        crossorigin="anonymous"></script>
-</body>
+<?php 
+    if ($_SERVER['REQUEST_METHOD'] == "POST") {
+        // echo "clicked";
+        $product_title = $_POST['product'];
+        $price = $_POST['price'];
+        $qty = $_POST['qty'];
+        $total = $price * $qty;
+        $order_date = date("Y-m-d H:i:s");
+        $status = "Ordered";
+        $name = $_POST['name'];
+        $contact = $_POST['contact'];
+        $email = $_POST['mail'];
+        $address = $_POST['address'];
 
-</html>
+        $sql = "INSERT INTO orders SET
+            product = '$product_title',
+            price = $price,
+            qty = $qty,
+            total = $total,
+            order_date = '$order_date',
+            status = '$status',
+            customer_name = '$name',
+            customer_contact = '$contact',
+            customer_email = '$email',
+            customer_address = '$address'
+
+        ";
+        $result = mysqli_query($conn,$sql);
+        if($result){
+            $_SESSION['noti'] = '<div class="alert alert-success" role="alert">
+                                    Order Placed Successfully
+                                </div>';
+            header('location:'.SITEURL.'index.php');
+        }else{
+            $_SESSION['noti'] = '<div class="alert alert-danger" role="alert">
+                                    Failed To Place Order
+                                </div>';
+            header('location:'.SITEURL.'index.php');
+        }
+    }
+?>
+    
